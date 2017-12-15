@@ -1,12 +1,51 @@
-﻿<html>
+﻿<html lang="zh-CN">
 <head>
-<title>Event Manage Page</title>
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+<title>Guest Manage</title>
 </head>
-<body>
-<h1>Login Success!</h1>
-<div style="float:right;">
-<a>嘿！{{ user }} 欢迎</a><hr/>
+<body role="document">
+<!-- 导航栏 -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+<div class="container">
+<div class="navbar-header">
+<a class="navbar-brand" href="/event_manage/">TesterHome Manage System</a>
+</div>
+<div id="navbar" class="collapse navbar-collapse">
+<ul class="nav navbar-nav">
+<li class="active"><a href="#">测试中心请假查看</a></li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+<li><a href="#">{{user}}</a></li>
+<li><a href="/logout/">退出</a></li>
+</ul>
+</div>
+</div>
+</nav>
+<!-- 请假详情 -->
+<div class="row" style="padding-top: 80px;">
+<div class="col-md-6">
+<table class="table table-striped">
+<thead>
+<tr>
+<th>名称</th><th>姓名</th><th>请假原因</th><th>请假天数</th><th>开始时间</th><th>结束时间</th>
+</tr>
+</thead>
+<tbody>
+{% for event in events %}
+<tr>
+<td>{{ event.name }}</td>
+<td>{{ event.realname }}</td>
+<td>{{ event.reason }}</td>
+<td>{{ event.days }}</td>
+<td>{{ event.start_time }}</td>
+<td>{{ event.end_time }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
 </div>
 </body>
-
 </html>
